@@ -1,0 +1,130 @@
+:root {
+  --accent:#d32f2f;
+  --btn:#000;
+  --input-bg:#fff6f6;
+  --text:#111;
+  --muted:#777;
+  --sheet:#ffffff;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  background:#fafafa;
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding-bottom:60px; /* space for footer */
+}
+
+/* Header */
+.header {
+  background:var(--accent);
+  color:#fff;
+  padding:14px 16px;
+  font-weight:700;
+  font-size:18px;
+  text-align:left;
+}
+
+/* Card container */
+.card {
+  max-width:720px;
+  margin:18px auto;
+  background:var(--sheet);
+  border:1px solid #e6e6e6;
+  border-radius:4px;
+  overflow:hidden;
+  box-shadow:0 1px 4px rgba(0,0,0,0.04);
+}
+.card-body { padding:14px; }
+
+/* Form rows */
+.row { margin-bottom:12px; }
+label {
+  display:block;
+  font-size:13px;
+  margin-bottom:6px;
+  font-weight:600;
+  color:var(--muted);
+}
+input[type="date"] {
+  width:100%;
+  padding:10px 12px;
+  font-size:15px;
+  border:1px solid #ccc;
+  border-radius:1px;
+  background:var(--input-bg);
+  outline:none;
+}
+input[type="date"]:focus {
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(211,47,47,0.06);
+}
+
+/* Button */
+.btn {
+  display:block;
+  width:100%;
+  padding:11px 14px;
+  font-size:12px;
+  font-weight:700;
+  color:#fff;
+  background:var(--btn);
+  border:none;
+  border-radius:1px;
+  cursor:pointer;
+}
+.btn:active { transform:translateY(1px); }
+.btn.reset { background:#666; }
+
+/* Result box */
+.result {
+  margin-top:14px;
+  min-height:110px;
+  border:1px solid #cfcfcf;
+  border-radius:1px;
+  background:#fff;
+  padding:12px;
+  font-weight:600;
+  color:var(--text);
+  white-space:pre-wrap;
+}
+
+.meta { font-size:13px; color:var(--muted); margin-top:6px; }
+
+/* Footer */
+.footer {
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  text-align:center;
+  padding:10px 5px;
+  background:#f5f5f5;
+  border-top:1px solid #ddd;
+  font-size:13px;
+  color:#555;
+}
+.h4-style {
+  background-color: #FF0000;  /* Red background */
+  padding: 5px 8px;          /* Top/Bottom 5px, Left/Right 8px */
+  border-radius: 2px;        /* Rounded corners */
+  color: #ffffff;            /* White text */
+  margin-top: 50px;
+  margin-left: 10px; margin-right: 10px;
+}
+
+.justify-p {
+  text-align: justify;
+  margin-bottom: 10px;
+  margin-left: 10px; margin-right: 10px;
+  text-justify: inter-word;
+  line-height: 1.6;
+  word-spacing: normal;
+  hyphens: auto;
+  font-size: 12px;
+}
+.footer span { font-weight:600; }
