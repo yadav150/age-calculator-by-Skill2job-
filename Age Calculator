@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Online Age Calculator</title>
+  <style>
+    :root {
+      --accent:#d32f2f;
+      --btn:#000;
+      --input-bg:#fff6f6;
+      --text:#111;
+      --muted:#777;
+      --sheet:#ffffff;
+    }
+
+    * { box-sizing:border-box; }
+
+    body {
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:#fafafa;
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-bottom:60px;
+    }
+
+    .header {
+      background:var(--accent);
+      color:#fff;
+      padding:14px 16px;
+      font-weight:700;
+      font-size:18px;
+      text-align:left;
+    }
+
+    .card {
+      max-width:720px;
+      margin:18px auto;
+      background:var(--sheet);
+      border:1px solid #e6e6e6;
+      border-radius:4px;
+      overflow:hidden;
+      box-shadow:0 1px 4px rgba(0,0,0,0.04);
+    }
+    .card-body { padding:14px; }
+
+    .row { margin-bottom:12px; }
+    label {
+      display:block;
+      font-size:13px;
+      margin-bottom:6px;
+      font-weight:600;
+      color:var(--muted);
+    }
+    input[type="date"] {
+      width:100%;
+      padding:10px 12px;
+      font-size:15px;
+      border:1px solid #ccc;
+      border-radius:1px;
+      background:var(--input-bg);
+      outline:none;
+    }
+    input[type="date"]:focus {
+      border-color:var(--accent);
+      box-shadow:0 0 0 3px rgba(211,47,47,0.06);
+    }
+
+    .btn {
+      display:block;
+      width:100%;
+      padding:11px 14px;
+      font-size:12px;
+      font-weight:700;
+      color:#fff;
+      background:var(--btn);
+      border:none;
+      border-radius:1px;
+      cursor:pointer;
+    }
+    .btn:active { transform:translateY(1px); }
+    .btn.reset { background:#666; }
+
+    .ads-container {
+      max-width:370px;
+      margin:18px auto;
+      background:#fff;
+      border:1px solid #e6e6e6;
+      border-radius:2px;
+      padding:80px;
+      text-align:center;
+      font-size:13px;
+      color:var(--muted);
+      box-shadow:0 1px 4px rgba(0,0,0,0.03);
+    }
+
+    .result {
+      margin-top:14px;
+      min-height:110px;
+      border:1px solid #cfcfcf;
+      border-radius:1px;
+      background:#fff;
+      padding:12px;
+      font-weight:600;
+      color:var(--text);
+      white-space:pre-wrap;
+    }
+
+    .meta { font-size:13px; color:var(--muted); margin-top:6px; }
+
+    .footer {
+      position:fixed;
+      bottom:0;
+      left:0;
+      width:100%;
+      text-align:center;
+      padding:10px 5px;
+      background:#f5f5f5;
+      border-top:1px solid #ddd;
+      font-size:13px;
+      color:#555;
+    }
+    .footer span { font-weight:600; }
+
+    .h4-style {
+      background-color: #FF0000;
+      padding: 5px 8px;
+      border-radius: 2px;
+      color: #ffffff;
+      margin-top: 50px;
+      margin-left: 10px; margin-right: 10px;
+    }
+
+    .justify-p {
+      text-align: justify;
+      margin-bottom: 10px;
+      margin-left: 10px; margin-right: 10px;
+      text-justify: inter-word;
+      line-height: 1.6;
+      word-spacing: normal;
+      hyphens: auto;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">Online Age Calculator</div>
+
+  <div class="ads-container">
+    <!-- Replace this with your ad code -->
+  </div>
+
+  <div class="card" role="region" aria-label="Age calculator">
+    <div class="card-body">
+      <div class="row">
+        <label for="dob">Date of Birth</label>
+        <input id="dob" type="date">
+      </div>
+
+      <div class="row">
+        <label for="ageOn">Age On</label>
+        <input id="ageOn" type="date">
+      </div>
+
+      <button id="calcBtn" class="btn" type="button">Calculate</button>
+
+      <div id="result" class="result"></div>
+      <div class="meta">
+        Tip: Pick both dates then tap Calculate. Button will change to Reset after calculation.
+      </div>
+    </div>
+  </div>
+
+  <h4 class="h4-style">About This Tool</h4>
+
+  <p class="justify-p">
+    The Online Age Calculator is a simple and lightweight utility created to calculate your exact age instantly. 
+    By entering your date of birth and the date on which you want to calculate your age, this tool gives you 
+    accurate results in years, months, and days without any effort.
+  </p>
+
+  <p class="justify-p">
+    Unlike manual calculations that are time-consuming and prone to errors, this calculator provides instant 
+    and reliable results. It is especially useful for filling out application forms, official documents, 
+    or simply satisfying your curiosity about your precise age.
+  </p>
+
+  <p class="justify-p">
+    The tool is designed to be user-friendly with a clean layout. It automatically adjusts to your device 
+    and ensures a seamless experience whether you are using it on a computer or smartphone.
+  </p>
+
+  <p class="justify-p">
+    Moreover, the Online Age Calculator ensures your privacy since no data is stored or shared. 
+    It runs directly in your browser, making it a secure and trustworthy choice for anyone needing 
+    a quick and efficient age calculation.
+  </p>
+
+  <div class="footer">
+    &copy; <span>Skill2job</span> | All Rights Reserved
+  </div>
+
+  <script>
+    function daysInMonth(y, m) {
+      return new Date(y, m, 0).getDate();
+    }
+
+    const dobInput = document.getElementById('dob');
+    const ageOnInput = document.getElementById('ageOn');
+    const btn = document.getElementById('calcBtn');
+    const result = document.getElementById('result');
+
+    btn.addEventListener('click', () => {
+      if (btn.dataset.mode === 'reset') {
+        resetAll();
+      } else {
+        calculate();
+      }
+    });
+
+    function calculate() {
+      const dobVal = dobInput.value;
+      const onVal = ageOnInput.value;
+
+      if (!dobVal || !onVal) {
+        result.textContent = '⚠ Please select both Date of Birth and Age On date.';
+        return;
+      }
+
+      const birth = new Date(dobVal + 'T00:00:00');
+      const target = new Date(onVal + 'T00:00:00');
+
+      if (target < birth) {
+        result.textContent = '⚠ Age On date must be the same or after Date of Birth.';
+        return;
+      }
+
+      let y = target.getFullYear() - birth.getFullYear();
+      let m = target.getMonth() - birth.getMonth();
+      let d = target.getDate() - birth.getDate();
+
+      if (d < 0) {
+        m -= 1;
+        d += daysInMonth(target.getFullYear(), target.getMonth());
+      }
+      if (m < 0) {
+        y -= 1;
+        m += 12;
+      }
+
+      const totalMonths = y * 12 + m;
+      const msDiff = target.getTime() - birth.getTime();
+      const totalDays = Math.floor(msDiff / 86400000);
+      const totalHours = Math.floor(msDiff / 3600000);
+
+      const niceTarget = target.toLocaleDateString();
+      result.textContent =
+        `Your age on ${niceTarget}:\n` +
+        `${y} years, ${m} months, ${d} days\n\nAlso:\n` +
+        `• Total months: ${totalMonths}\n` +
+        `• Total days: ${totalDays}\n` +
+        `• Total hours: ${totalHours}`;
+
+      btn.textContent = 'Reset';
+      btn.classList.add('reset');
+      btn.dataset.mode = 'reset';
+    }
+
+    function resetAll() {
+      dobInput.value = '';
+      ageOnInput.value = '';
+      result.textContent = '';
+      btn.textContent = 'Calculate';
+      btn.classList.remove('reset');
+      delete btn.dataset.mode;
+    }
+
+    (function prefillToday() {
+      const t = new Date(),
+        yyyy = t.getFullYear(),
+        mm = String(t.getMonth() + 1).padStart(2, '0'),
+        dd = String(t.getDate()).padStart(2, '0');
+      ageOnInput.value = `${yyyy}-${mm}-${dd}`;
+    })();
+  </script>
+</body>
+</html>
